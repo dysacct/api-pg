@@ -18,7 +18,7 @@ func GetContactById(c *gin.Context, contact *models.Contact) (int, int, error) {
 	}
 
 	if err := config.DB.Find(contact).Error; err != nil {
-		return 500, 0, errors.New(fmt.Sprintf("error fetching contact: %v", err.Error()))
+		return 500, 0, fmt.Errorf("error fetching contact: %v", err.Error())
 	}
 
 	if contact.Model.ID == 0 {
